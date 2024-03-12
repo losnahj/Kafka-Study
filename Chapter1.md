@@ -5,12 +5,12 @@
 ```
 # 카프카 사용 이유
 ## 카프카 도입 이전 아키텍처
-![alt text](image.png)
+![image](https://github.com/losnahj/Kafka-Study/assets/67745025/ca0f8e6c-b0b1-47d3-a543-f9f3c7b32fb6)
 ## 카프카 도입 이후 아키텍처
-![alt text](image-1.png)
+![image](https://github.com/losnahj/Kafka-Study/assets/67745025/52dda91d-c7d5-451e-9179-e6d898d61d26)
 # 카프카 기본 개념
 ## 메세지
-![alt text](image-4.png)
+![image](https://github.com/losnahj/Kafka-Study/assets/67745025/44b347a6-a37d-402e-8239-f86c7af1c199)
 * Headers : 지정된 토픽
 * Key : 토픽 내부의 파티션 지정 
 * Value : 실제 보내고자 하는 데이터
@@ -32,11 +32,16 @@
 때문에 다양한 데이터 타입을 처리하는데 불리하다.
 * 타입을 명시하지 않기 때문에 프로듀서와 컨슈머간 메시지 **스키마 변경에 따른 호환성이 떨어진다.**
 
-![alt text](image-5.png)
+![image](https://github.com/losnahj/Kafka-Study/assets/67745025/7c429f8a-a3c0-42a4-907d-d0e00e333c50)
+
 
 ## 토픽과 파티션
 토픽은 데이터베이스의 `테이블`이라고 생각하면 되며, 파티션은 말 그대로 토픽을 쪼개놓은 것 이다.
-![alt text](image-6.png)
+![image](https://github.com/losnahj/Kafka-Study/assets/67745025/3807d6af-a791-4a9c-9d36-4b6ebe776948)
+
+
+
+
 
 ### 파티션을 사용하는 이유
 파티션을 사용하면 컨슈머가 메세지를 순차적으로 처리할 수 없다는데 굳이 파티션을 나누는 이유가 뭘까 생각할 수 있다.</br>
@@ -45,7 +50,7 @@
 이러한 문제점을 해결하기 위해 파티션을 나누어 병렬적 처리 한다.
 
 ## 프로듀서와 컨슈머
-![alt text](image-7.png)
+![image](https://github.com/losnahj/Kafka-Study/assets/67745025/52764c99-ad26-431f-9431-1c15bdb50205)
 이름과 같이 의미가 아주 직관적이다. 프로듀서는 메세지 생성자(발행자), 컨슈머는 메세지 구독자라는 것을 쉽게 파악할 수 있다.
 
 ### 컨슈머의 오프셋
@@ -62,13 +67,13 @@
 ## 브로커와 클러스터
 ### 컨트롤러 브로커
 카프카 서버(브로커)는 클러스터로 동작하도록 설계가 되었다. 때문에 여러 브로커들을 관리하고 모니터링하는 역할의 컨트롤러 브로커를 둔다.
-![alt text](image-8.png)
+![image](https://github.com/losnahj/Kafka-Study/assets/67745025/7dab763e-d06e-4ab5-91d9-b63a1c2b7f33)
 
 ### 파티션 리더
 파티션은 여러 브로커에 복제하여 사용할 수 있기 때문에 파티션 리더를 하나 두고 이를 복제하는 팔로우들로 구성된다.</br>
 DB 클러스터에서 Writer DB와 Reader DB를 구분한 것 처럼 생각하면 될 것 같다.</br>
-때문에 프로듀서들은 메세지를 발행할 때, 무조건 파티션 리더에 발행해야한다. 그에 반해 컨슈머들은 리더, 팔로우 상관없이 아무곳에서 메세지를 읽을 수 있다.
-![alt text](image-9.png)
+때문에 프로듀서들은 메세지를 발행할 때, 무조건 파티션 리더에 발행해야한다. 그에 반해 컨슈머들은 리더, 팔로우 상관없이 아무곳에서 메세지를 읽을 수 있다.</br>
+![image](https://github.com/losnahj/Kafka-Study/assets/67745025/5b3b7b50-99ff-465f-9ebc-6b3eb7fd1608)
 
 # 질문
 ## 메세지를 배치 단위로 저장할 때, 마지막 메세지가 걸린다면?
